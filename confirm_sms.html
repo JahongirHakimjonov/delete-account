@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete Account SMS</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .code-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .code-inputs input {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #2575FCFF;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #1049ab;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kodni kiriting</h1>
+        <form id="confirm-sms-form">
+            <div class="code-inputs">
+                <input type="text" id="digit1" maxlength="1" required />
+                <input type="text" id="digit2" maxlength="1" required />
+                <input type="text" id="digit3" maxlength="1" required />
+                <input type="text" id="digit4" maxlength="1" required />
+            </div>
+            <button type="submit">Tasdiqlash</button>
+            <div class="message" id="message"></div>
+        </form>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('.code-inputs input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+
+        document.getElementById('confirm-sms-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = Array.from(inputs).map(input => input.value).join('');
+            const messageDiv = document.getElementById('message');
+            if (code === '1234') { // Mock verification code
+                messageDiv.textContent = 'Akkaunt muvafaqiyatli o\'chirildi!';
+                messageDiv.style.color = 'lightgreen';
+            } else {
+                messageDiv.textContent = 'Akkunt muvaqiyatli o\'chirildi!';
+                messageDiv.style.color = 'lightgreen';
+            }
+        });
+    </script>
+</body>
+</html>
