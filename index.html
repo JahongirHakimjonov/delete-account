@@ -49,6 +49,7 @@
             border: none;
             border-radius: 0 8px 8px 0;
             font-size: 1rem;
+            max-width: 200px;
         }
         button {
             width: 100%;
@@ -64,6 +65,20 @@
         button:hover {
             background-color: #1049ab;
         }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 10px;
+            }
+            .container h1 {
+                font-size: 1.5rem;
+            }
+            .input-group input {
+                font-size: 0.9rem;
+            }
+            button {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -72,7 +87,7 @@
         <form id="send-sms-form">
             <div class="input-group">
                 <span>+998</span>
-                <input type="tel" id="phone" placeholder="901234567" required />
+                <input type="tel" id="phone" placeholder="901234567" maxlength="9" required />
             </div>
             <button type="submit">SMS yuborish</button>
         </form>
@@ -82,11 +97,11 @@
         document.getElementById('send-sms-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const phone = '+998' + document.getElementById('phone').value;
-            if (phone) {
+            if (phone.length === 13) { // +998 + 9 digits
                 localStorage.setItem('phone', phone);
                 window.location.href = 'confirm_sms.html';
             } else {
-                alert('Iltimos, telefon raqamni kiriting');
+                alert('Iltimos, telefon raqamni to\'liq kiriting');
             }
         });
     </script>
