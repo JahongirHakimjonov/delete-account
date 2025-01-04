@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .input-group span {
+            padding: 12px;
+            background-color: #fff;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+            color: #333;
+            border: none;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #2575FCFF;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #1049ab;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hisobni o'chirish</h1>
+        <form id="send-sms-form">
+            <div class="input-group">
+                <span>+998</span>
+                <input type="tel" id="phone" placeholder="901234567" required />
+            </div>
+            <button type="submit">SMS yuborish</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('send-sms-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = '+998' + document.getElementById('phone').value;
+            if (phone) {
+                localStorage.setItem('phone', phone);
+                window.location.href = 'confirm_sms.html';
+            } else {
+                alert('Iltimos, telefon raqamni kiriting');
+            }
+        });
+    </script>
+</body>
+</html>
